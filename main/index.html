@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: cursive;
+        background-color: antiquewhite;
+      }
+      a {
+        text-decoration: none;
+      }
+      li {
+        list-style: none;
+      }
+      .logo {
+        font-size: 32px;
+      }
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: rgb(128, 92, 0);
+        color: white;
+      }
+      .nav-links a {
+        color: white;
+      }
+      .menu {
+        display: flex;
+        gap: 1em;
+        font-size: 18px;
+      }
+      .menu li:hover {
+        background-color: #9e884c;
+        border-radius: 3px;
+        transition: 0.3s ease;
+      }
+      .menu li {
+        padding: 4px 12px;
+      }
+      .dropdown {
+        position: absolute;
+        background-color: rgb(128, 92, 1);
+        border-radius: 8px;
+        padding: 1em 0;
+        display: none;
+      }
+      .services {
+        position: relative;
+      }
+      .services:hover .dropdown {
+        display: block;
+      }
+      input[type="checkbox"] {
+        display: none;
+      }
+
+      .hamburger {
+        font-size: 32px;
+        display: none;
+      }
+
+
+      @media (max-width: 750px) {
+
+        .hamburger {
+          font-size: 32px;
+          display: block;
+        }
+        .navbar{
+          flex-direction: column;
+          width: 100px;
+          height: 100vh;
+        }
+        .menu{
+          display: flex;
+          flex-direction: column;
+          
+        }
+
+      }
+      .main{
+        text-align: center;
+      
+      }
+      p{
+        font-size: large;
+      }
+      h1{
+        text-decoration: underline;
+        margin: 20px;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">Home</div>
+      <input type="checkbox" id="checkbox_toggle" />
+        <label for="checkbox_toggle" class="hamburger">&#9776</label>
+      <ul class="nav-links">
+        <div class="menu">
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/guessNumber.html">Game</a></li>
+          <li class="services">
+            <a href="/">Services</a>
+            <ul class="dropdown">
+              <li><a href="/">dropdown1</a></li>
+              <li><a href="/">dropdown2</a></li>
+              <li><a href="/">dropdown3</a></li>
+              <li><a href="/">dropdown4</a></li>
+              <li><a href="/">dropdown5</a></li>
+            </ul>
+          </li>
+          <li><a href="/">Pricing</a></li>
+          <li><a href="/">Contact</a></li>
+        </div>
+      </ul>
+    </nav>
+    <div class="main">
+      <h1>Home page</h1><br><br>
+      <p>This is the home page . you can see that this page consists of only text<br>
+         In this page navbar is there which have two working links</p>
+         
+         <ol>
+          <li>One is the home page</li>
+          <li>Another is the game page</li>
+         </ol>
+      <p>
+         If you go to the game page you will see a number guessing game.<br>
+         The other link is home which will redirect you to this page
+      </p>
+    </div>
+  </body>
+</html>

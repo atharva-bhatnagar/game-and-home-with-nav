@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 " />
+    <title>Guess Number</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: cursive;
+      }
+      a {
+        text-decoration: none;
+      }
+      li {
+        list-style: none;
+      }
+      .logo {
+        font-size: 32px;
+      }
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        width: 100vw;
+        background-color: rgb(128, 92, 0);
+        color: white;
+      }
+      .nav-links a {
+        color: white;
+      }
+      .menu {
+        display: flex;
+        gap: 1em;
+        font-size: 18px;
+      }
+      .menu li:hover {
+        background-color: #9e884c;
+        border-radius: 3px;
+        transition: 0.3s ease;
+      }
+      .menu li {
+        padding: 4px 12px;
+      }
+      .dropdown {
+        position: absolute;
+        background-color: rgb(128, 92, 1);
+        border-radius: 8px;
+        padding: 1em 0;
+        display: none;
+      }
+      .services {
+        position: relative;
+      }
+      .services:hover .dropdown {
+        display: block;
+      }
+      input[type="checkbox"] {
+        display: none;
+      }
+
+      .hamburger {
+        font-size: 32px;
+        display: none;
+      }
+
+
+      @media (max-width: 750px) {
+
+        .hamburger {
+          font-size: 32px;
+          display: block;
+        }
+        .navbar{
+          flex-direction: column;
+          width: 100px;
+          height: 100vh;
+        }
+        .menu{
+          display: flex;
+          flex-direction: column;
+          
+        }
+        body{
+          display: flex;
+          justify-content: space-between;
+        }
+
+
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: antiquewhite;
+      }
+      .main {
+        width: 35vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(248, 225, 190);
+        border-radius: 20px;
+        margin-top: 30px;
+        border: 3px dashed black;
+      }
+      h1 {
+        text-decoration: underline;
+        margin: 10px;
+      }
+      h2 {
+        border-radius: 10px;
+        padding: 8px 16px;
+        background-color: red;
+        border: none;
+        margin: 10px;
+      }
+      p{
+        margin: 10px;
+      }
+      button {
+        padding: 4px 8px;
+        border-radius: 8px;
+        font-weight: 600;
+        background-color: aliceblue;
+        margin: 10px;
+      }
+      input {
+        border-radius: 16px;
+        padding: 8px 16px;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <nav class="navbar">
+      <div class="logo">Game</div>
+      <input type="checkbox" id="checkbox_toggle" />
+        <label for="checkbox_toggle" class="hamburger">&#9776</label>
+      <ul class="nav-links">
+        <div class="menu">
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/guessNumber.html">Game</a></li>
+          <li class="services">
+            <a href="/">Services</a>
+            <ul class="dropdown">
+              <li><a href="/">dropdown1</a></li>
+              <li><a href="/">dropdown2</a></li>
+              <li><a href="/">dropdown3</a></li>
+              <li><a href="/">dropdown4</a></li>
+              <li><a href="/">dropdown5</a></li>
+            </ul>
+          </li>
+          <li><a href="/">Pricing</a></li>
+          <li><a href="/">Contact</a></li>
+        </div>
+      </ul>
+    </nav>
+    <div class="main">
+      <h1>Guess kar Prize Jeeto</h1>
+      <h2 id="chances">Chances left:</h2>
+      <label for="num">
+        <h3>Enter the number:</h3>
+        <input id="num2" type="text" />
+      </label>
+      <br /><br />
+      <button onclick="checkNum()">Submit</button><br />
+      <p>
+        hint: You can see the correct answer in console after guessing wrong
+      </p>
+      <br />
+      <button onclick="newGame()">Restart</button>
+      <p id="message"></p>
+      <h3>History</h3>
+      <ol id="history"></ol>
+    </div>
+    <script>
+      const chancesEl = document.getElementById("chances");
+      const messageEl = document.getElementById("message");
+      const historyEl = document.getElementById("history");
+      const num2El = document.getElementById("num2");
+      let chances = 10;
+      chancesEl.innerHTML = "Chances left: " + chances;
+
+      let num = Math.floor(Math.random() * 100 + 1);
+
+      function checkNum() {
+        let num2 = Number(num2El.value);
+        if (chances > 0) {
+          if (num2 === num) {
+            messageEl.innerHTML = "You guessed the correct number!!!";
+            chances -= 1;
+            let his = document.createElement("li");
+            his.innerText = `${num2} is correct answer`;
+            historyEl.appendChild(his);
+            chancesEl.innerHTML = "Chances left: " + chances;
+            alert("congratulations you won!!!");
+          } else if (num2 > num) {
+            messageEl.innerHTML = "Your guess is too high";
+            chances -= 1;
+            let his = document.createElement("li");
+            his.innerText = `${num2} is too high`;
+            historyEl.appendChild(his);
+            chancesEl.innerHTML = "Chances left: " + chances;
+            console.log(num);
+          } else {
+            messageEl.innerHTML = "your guess is too low";
+            chances -= 1;
+            let his = document.createElement("li");
+            his.innerText = `${num2} is too low`;
+            historyEl.appendChild(his);
+            chancesEl.innerHTML = "Chances left: " + chances;
+            console.log(num);
+          }
+        } else {
+          alert("all your chances are finished!!! new game will be started.");
+          newGame();
+        }
+      }
+      function newGame() {
+        num = Math.floor(Math.random() * 100 + 1);
+        chances = 10;
+        historyEl.innerHTML = "";
+        messageEl.innerHTML = "";
+        chancesEl.innerHTML = "Chances left: " + chances;
+      }
+    </script>
+  </body>
+</html>
